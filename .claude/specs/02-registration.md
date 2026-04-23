@@ -1,7 +1,9 @@
 # Spec: Registration
 
 ## Overview
-Implement user registration so new visitors can create a Spendly account. This step wires up the POST /register route (currently a stub), adds the two database helper functions needed to insert and look up users, and creates `base.html` — the shared layout that every other template in the project extends. Registration is the first user-facing feature and the prerequisite for all authenticated steps that follow.
+## Overview
+
+Implement user registration so new visitors can create a Spendly account. This step upgrades the existing stub `GET /register` route into a fully functional form that accepts a POST, validates input, hashes the password, and inserts a new row into the `users` table. On success the user is shown with a success message and then redirected to the login page. This is the entry point for all authenticated features that follow.
 
 ## Depends on
 - Step 01 – Database Setup (`database/db.py` with `init_db`, `seed_db`, `get_db` already implemented and the `users` table already in schema)
