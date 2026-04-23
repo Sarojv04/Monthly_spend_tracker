@@ -71,3 +71,34 @@ Maintain proper spacing between the two buttons
 Do not change functionality or links of either button
 
 Do not modify any other part of the page
+
+-------------------------------------------- Plan Mode creation----------------------------------------------------------------------------
+Enter Plan mode and create a plan based on the spec document
+
+Read .claude/specs/01-database-setup.md and the existing database/db.py and app.py, then generate an implementation plan. Save this plan to .claude/plans/01-database-setup.md
+
+----------------------------------------------------seed user prompt ------------------------------------------------------------
+
+---
+description: Create a single dummy user in the database
+allowed-tools: Read, Bash(python:*)
+---
+
+Read database/db.py to understand the users table schema and the get_db() helper.
+
+Then write and run a Python script using Bash that:
+
+1. Generates a realistic random  user using your own knowledge of common names across regions of the world:
+   - Name: a realistic Indian first + last name
+   - Email: derived from the name with a random 2–3 digit number suffix (e.g. rahul.sharma91@gmail.com)
+   - Password: "password123" hashed with werkzeug's generate_password_hash
+   - created_at: current datetime
+
+2. Checks if the generated email already exists in the users table. If it does, regenerate until unique.
+
+3. Inserts the user into the database using the same get_db() pattern found in db.py.
+
+4. Prints confirmation:
+   - id
+   - name
+   - email
